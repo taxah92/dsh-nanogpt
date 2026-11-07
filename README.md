@@ -42,7 +42,9 @@ dsh plugin --profile web add dsh-nanogpt
 # 2. Make sure the bundle is enabled in the profile: dsh.profile.bundles must list "dsh-nanogpt"
 #    (the plugin manager / market toggle does the same thing)
 
-# 3. Restart the harness: the host half of a plugin is loaded once per process
+# 3. No restart needed for a new plugin: the loader picks up the new row and the
+#    client bundle live. A restart is only needed after editing the host half of
+#    an already-loaded plugin, or after moving the plugin to another path.
 ```
 
 The plugin adds one row to the profile patch layer:
@@ -54,6 +56,12 @@ The plugin adds one row to the profile patch layer:
 
 The row id `nanogpt` **is** the plugin's settings namespace — do not rename it, or the settings form
 and the patch layer will stop finding each other.
+
+**Activation.** A new plugin is picked up live: the loader registers the new row and the client
+bundle without a restart. A restart is needed only after editing the **host half** (`index.js`,
+`lib/*.js`) of an already-loaded plugin, after changing the plugin's **path**, or after changing the
+client package meta (`package.json` `dsh.client`/`exports`). The client half (`client.js`) and
+volatile config fields are picked up live.
 
 Then add the provider route to `llm-pi-ai` in `~/.dsh/profiles/web/cordis.patch.yml` (the plugin
 does not create it for you, because a route needs at least one model):
