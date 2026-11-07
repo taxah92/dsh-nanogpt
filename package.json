@@ -1,0 +1,74 @@
+{
+  "name": "dsh-nanogpt",
+  "version": "0.1.0",
+  "description": "NanoGPT PRO subscription models for DeepSeek Harness: a curated model picker, ×2 rate badges, reasoning levels and the remaining weekly quota, without spending the subscription allowance.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Anton Veselov <taxah92@gmail.com>",
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "nanogpt",
+    "nano-gpt",
+    "llm",
+    "models",
+    "model-picker",
+    "subscription",
+    "quota",
+    "reasoning"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taxah92/dsh-nanogpt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/taxah92/dsh-nanogpt/issues"
+  },
+  "homepage": "https://github.com/taxah92/dsh-nanogpt#readme",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "lib",
+    "tools",
+    "locale",
+    "cordis.patch.yml",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "dsh": {
+    "engines": {
+      "dsh": ">=0.2.2-rc.1"
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh": ">=0.2.2-rc.1",
+    "@deepseek-ai/schemastery": "^3.18.4"
+  },
+  "scripts": {
+    "check": "node --check index.js && node --check client.js && node --check lib/normalize.js && node --check tools/probe.mjs && node --check tools/smoke-host.mjs && node --check tools/smoke-client.mjs",
+    "test": "node tools/smoke-host.mjs && node tools/smoke-client.mjs",
+    "prepublishOnly": "npm run check",
+    "probe": "node tools/probe.mjs"
+  }
+}
