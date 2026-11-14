@@ -1,11 +1,12 @@
-# Слой бандла dsh-nanogpt.
+# Bundle layer for dsh-nanogpt.
 #
-# Одна строка плагина. `id` — пространство настроек плагина: сервис `settings`
-# адресует плагин по id его строки в профиле и строит форму из экспортируемой
-# схемы `Config`. `name` — имя пакета.
+# One plugin row. `id` is the plugin's settings namespace: the `settings`
+# service addresses the plugin by the id of its profile row and builds the form
+# from the exported `Config` schema. `name` is the package name.
 #
-# Конфиг здесь намеренно не задан: значения по умолчанию берёт схема, а правки
-# из формы настроек сервис сам записывает в патч-слой профиля.
+# The config is deliberately absent here: the schema supplies the defaults, and
+# edits made in the settings form are written back into the profile patch layer
+# by the service itself.
 - insert:
     - id: nanogpt
       name: dsh-nanogpt

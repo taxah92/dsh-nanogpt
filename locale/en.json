@@ -1,4 +1,6 @@
 {
-  "title": "NanoGPT",
-  "description": "NanoGPT PRO subscription models: curated picker, ×2 rate, reasoning levels, quota chip."
+  "meta": {
+    "title": "NanoGPT",
+    "description": "NanoGPT subscription and paid models for DeepSeek Harness: two model pickers, per-model subscription or balance billing with two API keys, provider selection and the weekly quota chip."
+  }
 }
